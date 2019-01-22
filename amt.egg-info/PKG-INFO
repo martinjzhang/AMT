@@ -1,0 +1,14 @@
+Metadata-Version: 2.1
+Name: amt
+Version: 0.0.1
+Summary: Adaptive Monte Carlo Test
+Home-page: UNKNOWN
+Author: Martin Zhang
+Author-email: jinye@stanford.edu
+License: UNKNOWN
+Description: # ada_permute
+Platform: UNKNOWN
+Classifier: Programming Language :: Python :: 3
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Operating System :: OS Independent
+Description-Content-Type: text/markdown
