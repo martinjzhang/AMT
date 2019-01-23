@@ -18,6 +18,7 @@ Relative file paths are used.
 - Varying effect size (Figure 5c): `./amt/experiments/simulation_effect.ipynb` Skip the `Simulation` section and directly run the `Generate figures` section to have Figure 5b.
 
 
-## GWAS data on Parkinson's dicease
+## GWAS data on Parkinson's disease
+Unfortunately, the full data is not included due to its large size. Here we only provide the data for running the notebook for the full GWAS analysis. The data will be hosted online with the publication of the paper. Nonetheless, all results are recorded in corresponding notebooks. 
 - Small GWAS (Table 2-3, Supp Table 1): `./amt/experiments/small_gwas_chr1.ipynb` Changing `chr1` to `chrx` (x=1,2,3,4) gives results on other chromosomes. `Compute fMC p-values` runs fMC and save the corresponding result, which also gives fMC running time. `Result analysis` prints fMC p-values for SNPs reported in the original paper. `Corresponding AMT result` runs `AMT` with the same MC samples. This is to check if AMT result is the same as fMC. This also gives the average number of MC samples `AMT` takes. `Directly run AMT` gives the running time of `AMT`, where the MC sampling is by actual permutation.  
 - full GWAS: the experiment is done using python script `./amt/experiments/amt_gwas.py`. This may take an hour to run and the results are stored in `./results/GWAS/result_amt_alpha_0.1_rep0`, which gives running time and the average number of MC samples used. Analysis of the result is done using `./amt/experiments/parkinsons_analysis_full.ipynb`, which prints out all information of the SNPs reported in the original paper. 
