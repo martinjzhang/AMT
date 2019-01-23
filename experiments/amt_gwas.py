@@ -22,14 +22,14 @@ def main(args):
     
     np.random.seed(0)
     print('# Loading Parkinson data')
-    with open('/home/martin/adapative_MC_test/parkinsons/parkinsons.pickle', 'rb') as f:
+    with open('../../parkinsons/parkinsons.pickle', 'rb') as f:
         X = pickle.load(f)
         y = pickle.load(f)
         miss_prop = pickle.load(f)
     ind_sample = (miss_prop<0.05)
     X = X[:, ind_sample]
     y = y-1
-    file_map = '/home/martin/adapative_MC_test/parkinsons/parkinsons.map'
+    file_map = '../../parkinsons/parkinsons.map'
     df_map = pd.read_csv(file_map, delimiter='\t', 
                          names=['chromosome', 'snp', 'start', 'end'])
     n_sample, n_snp = X.shape
@@ -55,7 +55,7 @@ def main(args):
     #              'r_Exp':r_Exp[:,ind_small], 'chi2_obs':chi2_obs[ind_small]}
     
     print('# Runing AMT')
-    output_folder = '/home/martin/adapative_MC_test/results/GWAS'
+    output_folder = '../../results/GWAS'
     start_time = time.time()
     n_fMC = int(n_hypothesis*100)
     p_hat_ub, p_hat_lb, p_hat, tau_hat, n_amt = md.amt(md.f_sample_chi2, data_gwas, n_hypothesis,

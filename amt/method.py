@@ -23,7 +23,7 @@ def get_monte_carlo_sample(p, n_permutation=5000, random_state=0):
 """
 def amt(f_sample, data, n_hypothesis, n_fMC=None, alpha=0.1, increment=1.1,
         batch_size_start=100, delta=None, output_folder=None, verbose=False, title='',
-        random_state=0, output_data_folder=None):
+        random_state=0, output_data_folder=None, n_core=2):
     """ Adaptive Monte Carlo test via multi-armed bandits.
     Args:
         f_sample (f(data,n_sample,sample_start)): the function to acquire MC samples.
@@ -104,7 +104,8 @@ def amt(f_sample, data, n_hypothesis, n_fMC=None, alpha=0.1, increment=1.1,
         s_amt[ind_sample] = s_amt[ind_sample] + f_sample(data, ind_sample, 
                                                          temp_n_amt_new, 
                                                          n_amt[ind_sample],
-                                                         random_state=random_state*1000+i_itr)
+                                                         random_state=random_state*1000+i_itr,
+                                                         n_core=n_core)
         n_amt_batch[ind_sample] += 1 
         n_amt[ind_sample] = n_amt[ind_sample] + temp_n_amt_new                     
         # Update CIs                
@@ -154,7 +155,7 @@ def amt(f_sample, data, n_hypothesis, n_fMC=None, alpha=0.1, increment=1.1,
     Sample dummy (this part should be parallelized for large-scale problems)
 """ 
 def f_sample_dummy(data, ind_sample, n_new_sample, sample_start=None,
-                   random_state=None):
+                   random_state=None, n_core=2):
     """ Adaptive Monte Carlo test via multi-armed bandits.
     Args:
         data ((n,m) NumPy boolean array): the fMC samples.
@@ -179,7 +180,7 @@ def f_sample_dummy(data, ind_sample, n_new_sample, sample_start=None,
 """
     f_sample for GWAS
 """
-def f_sample_chi2(data, ind_sample, n_new_sample, sample_start=None, n_core=32,
+def f_sample_chi2(data, ind_sample, n_new_sample, sample_start=None, n_core=2,
                   random_state=None):
     X = data['X'][:,ind_sample]
     y = data['y']
